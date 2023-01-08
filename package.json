@@ -1,0 +1,28 @@
+{
+  "name": "yummy",
+  "version": "1.0.0",
+  "description": "recipie application",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "preinstall": "rm -rf /dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/future-leader1/-recipe_WebApp.git"
+  },
+  "author": "leo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/future-leader1/-recipe_WebApp/issues"
+  },
+  "homepage": "https://github.com/future-leader1/-recipe_WebApp#readme",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.8.2",
+    "parcel": "^2.8.2"
+  },
+  "dependencies": {
+    "core-js": "^3.27.1",
+    "regenerator-runtime": "^0.13.11"
+  }
+}
