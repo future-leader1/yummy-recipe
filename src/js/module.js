@@ -4,6 +4,10 @@ import { async } from 'regenerator-runtime';
 
 export const state = {
   recipe: {},
+  search: {
+    query: '',
+    results: [],
+  },
 };
 
 export const loadRecipe = async id => {
@@ -22,6 +26,25 @@ export const loadRecipe = async id => {
       cookingTime: recipe.cooking_time,
       ingredients: recipe.ingredients,
     };
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+export const loadSearchResults = async function (query) {
+  try {
+    state.search.query = query;
+    const data = await getJSON(`${API_URL}?search=${query}`);
+
+    state.search.results = data.data.recipes.map(el => {
+      return {
+        id: el.id,
+        title: el.title,
+        publisher: el.publisher,
+        image: el.image_url,
+      };
+    });
   } catch (error) {
     console.log(error);
     throw error;
