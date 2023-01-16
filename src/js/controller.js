@@ -6,10 +6,11 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import { async } from 'regenerator-runtime';
 import View from './views/View.js';
+import paginationView from './views/paginationView.js';
 
-if (module.hot) {
-  module.hot.accept();
-}
+// if (module.hot) {
+//   module.hot.accept();
+// }
 
 const recipeContainer = document.querySelector('.recipe');
 
@@ -46,7 +47,11 @@ const controlSearchResults = async function () {
     if (!query) return;
     await model.loadSearchResults(query);
 
-    resultsView.render(model.state.search.results);
+    //render Results
+    resultsView.render(model.getSearchResults());
+
+    //pagintation buttons
+    paginationView.render(model.state.search);
 
     //claer search field
 
@@ -62,3 +67,7 @@ const init = function () {
 };
 
 init();
+
+paginationView._parentElement.addEventListener('click', e => {
+  e.preventDefault();
+});
