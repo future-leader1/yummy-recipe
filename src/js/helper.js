@@ -1,7 +1,5 @@
 import { TIMEOUT_SEC } from './config.js';
 
-console.log(TIMEOUT_SEC);
-
 const timeout = function (s) {
   return new Promise(function (_, reject) {
     setTimeout(function () {

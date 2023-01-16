@@ -8,9 +8,9 @@ import { async } from 'regenerator-runtime';
 import View from './views/View.js';
 import paginationView from './views/paginationView.js';
 
-// if (module.hot) {
-//   module.hot.accept();
-// }
+if (module.hot) {
+  module.hot.accept();
+}
 
 const recipeContainer = document.querySelector('.recipe');
 
@@ -61,13 +61,20 @@ const controlSearchResults = async function () {
   }
 };
 
+const controlPagination = function (pageNum) {
+  resultsView.render(model.getSearchResults(pageNum));
+
+  //pagintation buttons
+  paginationView.render(model.state.search);
+
+  //pagintation buttons
+  //paginationView.render(model.state.search);
+};
+
 const init = function () {
   recipeView.addHandlerRender(controlRecipes);
   searchView.addHandlerSearch(controlSearchResults);
+  paginationView.addClikcHandler(controlPagination);
 };
 
 init();
-
-paginationView._parentElement.addEventListener('click', e => {
-  e.preventDefault();
-});
