@@ -2,6 +2,7 @@ import * as model from './module.js';
 import recipeView from './views/recipeView.js';
 import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
+import addRecipeView from './views/addRecipeView.js';
 
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
@@ -32,13 +33,12 @@ const controlRecipes = async () => {
 
     resultsView.update(model.getSearchResults());
 
-    bookmarksView.update(model.state.bookmark);
-
     await model.loadRecipe(id);
 
     //stpe 2
     //rendering
     recipeView.render(model.state.recipe);
+    bookmarksView.update(model.state.bookmark);
   } catch (error) {
     recipeView.renderError();
     console.error(`Semething is wrong with request ${error} 🔥🔥🔥🔥`);
@@ -99,12 +99,24 @@ const controlAddBookmark = function () {
   bookmarksView.render(model.state.bookmark);
 };
 
+const controlBookmarks = function () {
+  bookmarksView.render(model.state.bookmark);
+};
+
+const controlAddRecipe = function (newRecipe) {
+  console.log(newRecipe);
+
+  // uplaod new recipe data
+};
+
 const init = function () {
+  bookmarksView.addHandlerRender(controlBookmarks);
   recipeView.addHandlerRender(controlRecipes);
   searchView.addHandlerSearch(controlSearchResults);
   recipeView.addHandlerAddBookMark(controlAddBookmark);
   paginationView.addClikcHandler(controlPagination);
   recipeView.addHandelerUpdateServings(controlServings);
+  addRecipeView.addHandlerUpload(controlAddRecipe);
 };
 
 init();
