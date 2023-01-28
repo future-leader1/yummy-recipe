@@ -32,6 +32,8 @@ const controlRecipes = async () => {
 
     resultsView.update(model.getSearchResults());
 
+    bookmarksView.update(model.state.bookmark);
+
     await model.loadRecipe(id);
 
     //stpe 2
@@ -92,6 +94,9 @@ const controlAddBookmark = function () {
   else model.deleteBookmark(model.state.recipe.id);
 
   recipeView.update(model.state.recipe);
+
+  //render bookmark
+  bookmarksView.render(model.state.bookmark);
 };
 
 const init = function () {
