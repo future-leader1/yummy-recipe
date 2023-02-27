@@ -12,15 +12,7 @@ import View from './views/View.js';
 import paginationView from './views/paginationView.js';
 import bookmarksView from './views/bookmarksView.js';
 
-if (module.hot) {
-  module.hot.accept();
-}
-
 const recipeContainer = document.querySelector('.recipe');
-
-// https://forkify-api.herokuapp.com/v2
-
-///////////////////////////////////////
 
 const controlRecipes = async () => {
   try {
@@ -76,9 +68,6 @@ const controlPagination = function (pageNum) {
 
   //pagintation buttons
   paginationView.render(model.state.search);
-
-  //pagintation buttons
-  //paginationView.render(model.state.search);
 };
 
 const controlServings = function (servings) {
