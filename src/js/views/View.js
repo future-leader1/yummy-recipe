@@ -1,6 +1,12 @@
 import icons from '../../img/icons.svg';
 export default class View {
   _data;
+  /**
+   * render recived object to the dom
+   * @param {Object | Object[]} data the data to be rendered
+   * @param {boolean} [render = true] = if false, create  markup string of rendering to the DOM
+   * @returns
+   */
   render(data, render = true) {
     if (!data || (Array.isArray(data) && data.length === 0))
       return this.renderError();
